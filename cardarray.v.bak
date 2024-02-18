@@ -1,0 +1,261 @@
+
+module cardarray (reset, clk, hcnt, vcnt, r, g ,b, mode, vsync); // KHS ver
+
+input reset, clk, vsync;
+input [1:0] mode;
+input [11:0] hcnt;
+input [10:0] vcnt;
+output [7:0] r, g, b;
+
+wire [1:0] mode;
+wire reset, clk, vsync;
+wire [11:0] hcnt;
+wire [10:0] vcnt;
+wire [7:0] r, g, b;
+
+reg [7:0] rb, gb, bb;
+wire [11:0] addp0;
+wire [1:0] outp0;
+reg selp0, vsyncd1;
+wire [11:0] hd1, hd2, hd3, hd4, hd5, hd6, hd7, hd8, hd9, hd10, hd11, hd12, hd13, hd14, hd15, hd16;
+wire [10:0] vd1, vd2, vd3, vd4, hd5, hd6, hd7, hd8, hd9, hd10, hd11, hd12, hd13, hd14, hd15, hd16;
+//reg [11:0] ths;
+//reg [10:0] tvs;
+
+assign hd1 = hcnt - 12'd656;
+assign vd1 = vcnt - 11'd336;
+
+assign hd2 = hcnt - 12'd816;
+assign vd2 = vd1;
+
+assign hd3 = hcnt - 12'd976;
+assign vd3 = vd1;
+
+assign hd4 = hcnt - 12'd1136;
+assign vd4 = vd1;
+
+assign hd5 <= hd1;
+assign vd5 = vcnt - 11'd496;
+
+assign hd6 <= hd2;
+assign vd6 <= vd5;
+
+assign hd7 <= hd3;
+assign vd7 <= vd5;
+
+assign hd8 <= hd4;
+assign vd8 <= vd5;
+
+assign hd9 <= hd1;
+assign vd9 <= vcnt - 11'd656;
+
+assign hd10 <= hd2;
+assign vd10 <= vd9;
+
+assign hd11 <= hd3;
+assign vd11 <= vd9;
+
+assign hd12 <= hd4;
+assign vd12 <= vd9;
+
+assign hd13 <= hd1;
+assign vd13 <= vcnt - 11'd816;
+
+assign hd14 <= hd2;
+assign vd14 <= vd13;
+
+assign hd15 <= hd3;
+assign vd15 <= vd13;
+
+assign hd16 <= hd4;
+assign vd16 <= vd13;
+
+
+//assign addp0 = {vd[7:2], hd[7:2]};
+
+apple u1 (.address(addp0), .clock(clk), .q(outp0));
+
+/* 일단 여기 밑은 내 생각에 화면이 움직이는 거니까 생략해줌, 추후 확인 후 변경 하기
+always @(posedge clk)
+begin
+   vsyncd1 <= vsync;
+   if (vsync == 1'b1 && vsyncd1 == 1'b0)
+         begin
+         tvs <= tvs + 4'd1;
+         ths <= ths + 4'd1;
+         end
+end
+*/
+always @(posedge clk)
+begin
+   
+   if ((vcnt >= vd1) && (vcnt <= vd2-11'd32))
+   begin
+   if ((hcnt >= hd1) && (hcnt <= hd2-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd2) && (hcnt <= hd3-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd3) && (hcnt <= hd4-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd4)&& (hcnt <= hd4 + 12'd128))
+      selp0 <= 1'b1; // 1 - display
+   end
+
+   else if ((vcnt >= vd2) && (vcnt <= vd3-11'd32))
+   begin
+   if ((hcnt >= hd1) && (hcnt <= hd2-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd2) && (hcnt <= hd3-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd3) && (hcnt <= hd4-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd4)&& (hcnt <= hd4 + 12'd128))
+      selp0 <= 1'b1; // 1 - display
+   end
+
+
+   else if ((vcnt >= vd3) && (vcnt <= vd4-11'd32))
+   begin
+   if ((hcnt >= hd1) && (hcnt <= hd2-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd2) && (hcnt <= hd3-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd3) && (hcnt <= hd4-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd4)&& (hcnt <= hd4 + 12'd128))
+      selp0 <= 1'b1; // 1 - display
+   end      
+
+
+   else if ((vcnt >= vd4) && (vcnt <= vd4+11'd128))
+   begin
+   if ((hcnt >= hd1) && (hcnt <= hd2-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd2) && (hcnt <= hd3-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd3) && (hcnt <= hd4-12'd32))
+      selp0 <= 1'b1; // 1 - display
+   else if ((hcnt >= hd4)&& (hcnt <= hd4 + 12'd128))
+      selp0 <= 1'b1; // 1 - display
+   end
+   else
+   selp0 <= 1'b0; // 0 - not display
+      
+end
+
+
+*/
+assign {r, g, b} = (selp0 == 1'd0) ? {rb, gb, bb} : // not display area
+                  (outp0 == 2'd0) ? {rb, gb, bb} : // display area, select color
+                  (outp0 == 2'd1) ? {8'd127, 8'd179, 8'd64} : {8'd228, 8'd41, 8'd36} ;
+
+
+
+
+always @(posedge clk)
+begin
+
+if ( mode == 2'b00 )
+begin
+
+   if ( vcnt[9:8] == 2'b00)
+      begin
+      rb <= hcnt[11:4];
+      gb <= hcnt[11:4];
+      bb <= hcnt[11:4];
+      end
+      
+   else if ( vcnt[9:8] == 2'b01)
+      begin
+      rb <= hcnt[11:4];
+      gb <= 8'd0;
+      bb <= 8'd0;
+      end
+      
+   else if ( vcnt[9:8] == 2'b10)
+      begin
+      rb <= 8'd0;
+      gb <= hcnt[11:4];
+      bb <= 8'd0;
+      end
+      
+   else if ( vcnt[9:8] == 2'b11)
+      begin
+      rb <= 8'd0;
+      gb <= 8'd0;
+      bb <= hcnt[11:4];
+      end
+end
+
+else if ( mode == 2'b01 )
+begin
+
+   if ( (vcnt[9] ^ hcnt[9]) == 1'b0 )
+      begin
+      rb <= 8'd0;
+      gb <= 8'd0;
+      bb <= 8'd0;
+      end
+
+   else if ( (vcnt[9] ^ hcnt[9]) == 1'b1 )
+      begin
+      rb <= 8'd255;
+      gb <= 8'd255;
+      bb <= 8'd255;
+      end
+end
+
+else if ( mode == 2'b10 || mode == 2'b11 )
+begin
+
+   if ( hcnt[10:8] == 3'b000 )
+      begin
+      rb <= 8'd255;
+      gb <= 8'd0;
+      bb <= 8'd0;
+      end
+   else if ( hcnt[10:8] == 3'b001 )
+      begin
+      rb <= 8'd0;
+      gb <= 8'd255;
+      bb <= 8'd0;
+      end
+   else if ( hcnt[10:8] == 3'b010 )
+      begin
+      rb <= 8'd0;
+      gb <= 8'd0;
+      bb <= 8'd255;
+      end
+   else if ( hcnt[10:8] == 3'b011 )
+      begin
+      rb <= 8'd255;
+      gb <= 8'd255;
+      bb <= 8'd0;
+      end
+   else if ( hcnt[10:8] == 3'b100 )
+      begin
+      rb <= 8'd255;
+      gb <= 8'd0;
+      bb <= 8'd255;
+      end
+   else if ( hcnt[10:8] == 3'b101 )
+      begin
+      rb <= 8'd0;
+      gb <= 8'd255;
+      bb <= 8'd255;
+      end
+   else 
+      begin
+      rb <= 8'd255;
+      gb <= 8'd255;
+      bb <= 8'd255;
+      end
+                        
+      
+end
+
+
+end
+
+
+endmodule

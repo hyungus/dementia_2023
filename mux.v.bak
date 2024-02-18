@@ -1,0 +1,76 @@
+module MUX(clk, reset, vcnt, hcnt, cursorr, cursorg, cursorb, cardr, cardg, cardb, scorer, scoreg, scoreb, r, g, b);
+
+input clk, reset;
+input [11:0] vcnt, hcnt;
+input [7:0] Back_R, Back_G, Back_B, Snake_R, Snake_G, Snake_B, Food_R, Food_G, Food_B, Over_R, Over_G, Over_B;
+input [11:0] mango_X, mango_Y, Snake_X, Snake_Y;
+output [7:0] r, g, b;
+
+wire [11:0] mango_X, mango_Y, Snake_X, Snake_Y;
+wire clk, reset;
+wire [11:0] vcnt, hcnt;
+wire [7:0] Back_R, Back_G, Back_B, Snake_R, Snake_G, Snake_B, Food_R, Food_G, Food_B, Over_R, Over_G, Over_B;
+reg [7:0] r, g, b;
+
+reg [1:0] sel;
+
+always @(posedge clk or negedge reset)
+begin
+	if(reset == 1'b0)
+		sel <= 2'b00;
+	else if((Snake_X >= 12'd10 && Snake_X <= 12'd135 || Snake_X <= 1100 && Snake_X >= 12'd935) || (Snake_Y >= 12'd10 && Snake_Y <= 12'd135 || Snake_Y <= 1050 && Snake_Y >= 12'd935))
+	begin
+		sel <= 2'b11;
+	end
+	//snake_food region
+	else if((vcnt >= 12'd140 && vcnt <= 12'd939) && (hcnt >= 12'd139 && hcnt <= 12'd938)) 
+	begin //food region
+		if((vcnt >= mango_Y && vcnt <= mango_Y + 12'd31) && (hcnt >= mango_X && hcnt <= mango_X + 12'd31))
+		sel <= 2'b00;
+		else //snake region
+		sel <= 2'b01;
+	end
+	else // background
+		sel <= 2'b10;
+end
+
+always @(posedge clk or negedge reset)
+begin
+	if(reset == 1'b0)
+	begin
+		r <= 8'd0;
+		g <= 8'd0;
+		b <= 8'd0;
+	end
+	else if (sel == 2'b10)
+	begin
+		r <= Back_R;
+		g <= Back_G;
+		b <= Back_B;
+	end
+	
+	else if (sel == 2'b00)
+	begin
+		r <= Food_R;
+		g <= Food_G;
+		b <= Food_B;
+	end
+	
+	else if (sel == 2'b01)
+	begin
+		r <= Snake_R;
+		g <= Snake_G;
+		b <= Snake_B;
+	end
+	
+	else if (sel == 2'b11)
+	begin
+		r <= Over_R;
+		g <= Over_G;
+		b <= Over_B;
+	end
+	
+end
+
+
+endmodule

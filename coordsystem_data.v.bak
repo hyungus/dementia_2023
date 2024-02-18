@@ -1,0 +1,33 @@
+
+module coordsystem_data(clk, reset, NewKB, KB_DAT, xcoord, ycoord, data1, data2);
+
+input NewKB, clk, reset;
+input [7:0]	KB_DAT;
+output [1:0] xcoord, ycoord;
+output [3:0] data1, data2;
+
+wire NewKB, clk, reset;
+wire [7:0] KB_DAT;
+reg [1:0] xcoord, ycoord;
+reg [3:0] data1, data2;
+
+always @(posedge clk or negedge reset)
+	begin
+	
+		if(reset == 1'b0)
+			begin
+				xcoord <= 2'b00;
+				ycoord <= 2'b00;
+				data1 <= 2'b00;
+				data2 <= 2'b00;
+			end
+	
+		else if(
+	
+	
+	end
+	
+	
+	
+	
+endmodule

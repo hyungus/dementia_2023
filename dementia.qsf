@@ -1,0 +1,130 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+# Date created = 13:37:49  November 27, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		dementia_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE115F29C8
+set_global_assignment -name TOP_LEVEL_ENTITY dementia
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:37:49  NOVEMBER 27, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_location_assignment PIN_D12 -to b[7]
+set_location_assignment PIN_D11 -to b[6]
+set_location_assignment PIN_C12 -to b[5]
+set_location_assignment PIN_A11 -to b[4]
+set_location_assignment PIN_B11 -to b[3]
+set_location_assignment PIN_C11 -to b[2]
+set_location_assignment PIN_A10 -to b[1]
+set_location_assignment PIN_B10 -to b[0]
+set_location_assignment PIN_Y2 -to clk
+set_location_assignment PIN_C9 -to g[7]
+set_location_assignment PIN_F10 -to g[6]
+set_location_assignment PIN_B8 -to g[5]
+set_location_assignment PIN_C8 -to g[4]
+set_location_assignment PIN_H12 -to g[3]
+set_location_assignment PIN_F8 -to g[2]
+set_location_assignment PIN_G11 -to g[1]
+set_location_assignment PIN_G8 -to g[0]
+set_location_assignment PIN_G13 -to hsync
+set_location_assignment PIN_C13 -to vsync
+set_location_assignment PIN_C10 -to sync
+set_location_assignment PIN_M23 -to reset
+set_location_assignment PIN_H10 -to r[7]
+set_location_assignment PIN_H8 -to r[6]
+set_location_assignment PIN_J12 -to r[5]
+set_location_assignment PIN_G10 -to r[4]
+set_location_assignment PIN_F12 -to r[3]
+set_location_assignment PIN_D10 -to r[2]
+set_location_assignment PIN_E11 -to r[1]
+set_location_assignment PIN_E12 -to r[0]
+set_location_assignment PIN_G6 -to ps2clk
+set_location_assignment PIN_H5 -to ps2dat
+set_location_assignment PIN_A12 -to clk0
+set_location_assignment PIN_F11 -to de
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_G19 -to led
+set_location_assignment PIN_M21 -to reset2
+set_location_assignment PIN_F19 -to led2
+set_location_assignment PIN_E19 -to led3
+set_location_assignment PIN_F21 -to led4
+set_global_assignment -name VERILOG_FILE dementia.v
+set_global_assignment -name VERILOG_FILE RxKB.v
+set_global_assignment -name VERILOG_FILE cardarray.v
+set_global_assignment -name VERILOG_FILE hv_cnt.v
+set_global_assignment -name VERILOG_FILE hv_sync.v
+set_global_assignment -name QIP_FILE clockGen.qip
+set_global_assignment -name VERILOG_FILE background.v
+set_global_assignment -name VERILOG_FILE coordsystem_data.v
+set_global_assignment -name VERILOG_FILE time_counter.v
+set_global_assignment -name VERILOG_FILE mux.v
+set_global_assignment -name VERILOG_FILE cursor.v
+set_global_assignment -name QIP_FILE cursorpic.qip
+set_global_assignment -name QIP_FILE applepic.qip
+set_global_assignment -name QIP_FILE colorcardpic.qip
+set_global_assignment -name VERILOG_FILE data_compare_score_counter.v
+set_global_assignment -name VERILOG_FILE gameover.v
+set_global_assignment -name QIP_FILE brainpic.qip
+set_global_assignment -name QIP_FILE mentpic.qip
+set_global_assignment -name QIP_FILE gabojagopic.qip
+set_global_assignment -name QIP_FILE pic0.qip
+set_global_assignment -name QIP_FILE pic1.qip
+set_global_assignment -name QIP_FILE pic2.qip
+set_global_assignment -name QIP_FILE pic3.qip
+set_global_assignment -name QIP_FILE pic4.qip
+set_global_assignment -name QIP_FILE pic5.qip
+set_global_assignment -name QIP_FILE pic6.qip
+set_global_assignment -name QIP_FILE pic7.qip
+set_global_assignment -name QIP_FILE pic8.qip
+set_global_assignment -name QIP_FILE pic9.qip
+set_global_assignment -name QIP_FILE piecepic.qip
+set_global_assignment -name QIP_FILE rightanswerpic.qip
+set_global_assignment -name QIP_FILE secondpic.qip
+set_global_assignment -name QIP_FILE timepic.qip
+set_global_assignment -name QIP_FILE wronganswerpic.qip
+set_global_assignment -name QIP_FILE chimeipic.qip
+set_global_assignment -name QIP_FILE cong1pic.qip
+set_global_assignment -name QIP_FILE cong2pic.qip
+set_global_assignment -name QIP_FILE gameoverpic.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,0 +1,8 @@
+module background (clk, reset, rb, gb, bb);
+
+input clk, reset;
+output [7:0] rb, gb, bb;
+
+wire clk, reset;
+reg [7:0] rb, gb, bb;
+

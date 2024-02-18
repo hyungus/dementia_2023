@@ -1,0 +1,22 @@
+module data_compare_score_counter (data1, data2, data_reset, clk, reset, ccount, wcount);
+
+input [3:0]data1, data2;
+input clk, reset;
+output data_reset;
+output [2:0] ccount, wcount;
+
+wire [3:0]data1, data2;
+wire clk, reset;
+reg data_reset;
+reg [2:0] ccount, wcount;
+
+always @(posedge clk or negedge reset)
+begin
+
+
+
+
+end
+
+
+endmodule

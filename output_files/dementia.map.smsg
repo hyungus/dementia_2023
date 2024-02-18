@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at cardarray.v(124): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/20.1/2023_2/20231127/dementia/cardarray.v Line: 124

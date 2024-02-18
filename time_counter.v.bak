@@ -1,0 +1,45 @@
+
+module cnt4min (clk, reset, cnt4sec1, cnt4sec10);
+
+input clk, reset;
+output [3:0] cnt4sec1, cnt4sec10;
+
+wire clk, reset;
+reg [3:0] cnt4sec1, cnt4sec10;
+
+always @(posedge clk or negedge reset)
+
+
+begin
+	if (reset == 1'b0)
+		begin
+		cnt4sec1 <= 1'b0;
+		cnt4sec10 <= 1'b0;
+		cnt4min1 <= 1'b0;
+		cnt4min10 <= 1'b0;
+		end	
+	else if (cnt4min10 == 4'd5 && cnt4min1 == 4'd9 && cnt4sec10 == 4'd5 && cnt4sec1 == 4'd9)
+		begin
+		cnt4min10 <= 4'd0; cnt4min1 <= 4'd0; cnt4sec10 <= 4'd0; cnt4sec1 <= 4'd0;
+		end
+	else if (cnt4min1 == 4'd9 && cnt4sec10 == 4'd5 && cnt4sec1 == 4'd9)
+		begin
+		cnt4min10 <= cnt4min10 + 4'd1;
+		cnt4min1 <= 4'd0; cnt4sec10 <= 4'd0; cnt4sec1 <= 4'd0;
+		end
+	else if (cnt4sec10 == 4'd5 && cnt4sec1 == 4'd9)
+		begin
+		cnt4min1 <= cnt4min1 + 4'd1;
+		cnt4sec10 <= 4'd0; cnt4sec1 <= 4'd0;
+		end
+	else if (cnt4sec1 == 4'd9)
+		begin
+		cnt4sec10 <= cnt4sec10 + 4'd1;
+		cnt4sec1 <= 4'd0;
+		end
+	else
+		begin
+		cnt4sec1 <= cnt4sec1 + 4'd1;
+		end
+end
+endmodule
